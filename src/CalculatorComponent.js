@@ -12,8 +12,8 @@ export default class CalculatorComponent extends Component {
 	constructor(props) {
 		super(props);
  		this.state = {
-      	deck_num: 40,
-		chance_value: 0
+      		deck_num: 40,
+			chance_value: 0
     	};
 
 		this.handleClick = this.handleClick.bind(this);
@@ -34,13 +34,15 @@ export default class CalculatorComponent extends Component {
 	}
 
 	handleClick(event) {
+
+		this.setState({
+			deck_num: event.target.value
+        });
 		
-		var deck_num = this.state.deck_num
-		var result = this.atLeast1a(40, 5, 3)
+		var result = this.atLeast1a(this.state.deck_num, 5, 3)
 
 		this.setState({
         	chance_value: result
-			
         });
 
 		console.log(result);
@@ -57,7 +59,7 @@ export default class CalculatorComponent extends Component {
 				<input 
 				id="deck_num_tf"
 				type="number"
-					hintText="" value={this.state.deck_num} onChange={this.handleClick}
+					  onChange={this.handleClick}
 					></input>
 				<br />
 				<label className="styles.label" >A類卡片張數</label>
@@ -78,24 +80,3 @@ export default class CalculatorComponent extends Component {
 	}
 
 }
-
-
-
-var CalculateButton = React.createClass({
-	getInitialState: function () {
-		return { liked: false };
-	},
-	handleClick: function (event) {
-		this.setState({ liked: !this.state.liked });
-
-		document.getElementById('a').text = "1";
-
-	},
-	render: function () {
-		var text = this.state.liked ? 'like' : 'haven\'t liked';
-		return (
-			<RaisedButton onClick={this.handleClick} label="計算" >
-			</RaisedButton>
-		);
-	}
-});
