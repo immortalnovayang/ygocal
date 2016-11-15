@@ -12,9 +12,9 @@ export default class CalculatorComponent extends Component {
 	constructor(props) {
 		super(props);
  		this.state = {
-      deck_num: 40,
-			chance_value: 0
-    };
+      	deck_num: 40,
+		chance_value: 0
+    	};
 
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -39,8 +39,9 @@ export default class CalculatorComponent extends Component {
 		var result = this.atLeast1a(40, 5, 3)
 
 		this.setState({
-      chance_value: result
-    });
+        	chance_value: result
+			
+        });
 
 		console.log(result);
 	}
@@ -52,15 +53,18 @@ export default class CalculatorComponent extends Component {
 				<div className="App-header">
 					<h2>遊戲王機率計算器</h2>
 				</div>
-				<label id="x"className="styles.label">牌組張數</label>
-				<TextField
-					hintText="" value={this.state.deck_num}></TextField>
+				<label className="styles.label">牌組張數</label>
+				<input 
+				id="deck_num_tf"
+				type="number"
+					hintText="" value={this.state.deck_num} onChange={this.handleClick}
+					></input>
 				<br />
 				<label className="styles.label" >A類卡片張數</label>
-				<TextField hintText="" value="3"></TextField>
+				<TextField id="card_num_tf" hintText="" value="3"></TextField>
 				<br />
 				<label className="styles.label" >抽到至少1張的機率</label>
-				<TextField hintText="" 
+				<TextField id="chance_value_tf" hintText="" 
 				value={this.state.chance_value}></TextField>
 				<br />
 				<RaisedButton onClick={this.handleClick} label="計算" >
